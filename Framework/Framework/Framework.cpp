@@ -1,117 +1,218 @@
 ﻿// ** Framework v0.2
+#define CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include "Parent.h"
 #include "Child1.h"
 #include "Bullet.h"
 #include "Headers.h"
 
+#include <vector>
+#include <map>
+
 using namespace std;
 
 
 // 클래스(설명서) = 집합
-// ** 1. 정보은닉
-//      - 누구든지 수정할 수 있는 형태와 누구도 수정할 수 없는 형태 (정보가 은닉되어 있는 상태)
-// ** private:   =    자기자신만 사용가능. 
-// ** protected:  =   상속간의 공개된 상태, 비상속 클레스는 사용불가. 즉, 외부 사용불가
-// ** public:    =    공개된 상태
-// 
-// ** 2. 캡슐화
-//      - 데이터(변수)와 기능(함수)을 묶음으로 사용하는 것.
-// 
-// ** 3. 추상화
-//      - 포괄적으로 공유된 것
-//      - 추상 클래스는 객체화 시킬 수 없다.
-//      - 존재하지 않는 형태를 추상 클래스라고 한다.
-//      - 예) 사람, 학생, 군인 등의 대상이 특정되지 않는 경우(추상적인 경우)
-//      - 반대 예) "홍길동은 학생이다." 라면 홍길동이라는 특정 대상이 있으므로,
-//                  추상적인 형태로 볼 수 없다.
-//      - 추상클래스 밑에 객체는 존재한다.
-// 
-// ** 4. 상속
-//      - 위에서부터 받아들여지는 것 (자신이 들고있다는 유무는 필요 없다.)
-//      
-// 
-// ** 5. 다형성
-//      - 다양한 형태로 존재할 수 있다.
-//      - 그러나 부모 클래스의 기존 형태가 바뀌지 않고 
-//      - 자녀 클래스의 형태가 다양하게 존재할 수 있는 것이다.
-// 
-// ** 오브젝트(객체)
-//    ex) 키보드를 구성하고있는 구성원들도 객체가 될 수 있고,
-//        그 객체들이 모여서 또 다른 객체가 될 수도 있다. 즉, 모든 객체가 될 수 있다.
-// 
-//    - 추상화, 상속, 다형성이 어려운 부분이다. 각자 하나하나 이해하는 것 보단 다 같이 이해하는 것이 좋다.   
-// 
-//    - 객체들은 위 5가지 성질을 가지고 있다. 모든 객체는 무조건 클래스로 이루어져 있다.
-//    - 허나 모든 클래스는 객체가 될 수 없다. (추상 클래스)
 
-// ※ 접근방법은 점(.), 화살표(->), namespace(::) 이 3가지가 있다.
-
-
-// ** 4. 상속
-// 제일 이상적인 방법
-/*
-class AAA
-{
-protected:
-    string m_str;
-
-public:
-    void Output()
-    {
-        cout << m_str << endl;
-    }
-
-};
-
-class BBB : public AAA
-{
-private:
-
-public:
-    void Initialize() { m_str = "BBB"; }
-
-};
-
-class CCC : public AAA
-{
-private:
-
-public:
-    void Initialize() { m_str = "CCC"; }
-
-};
-
-      [main 출력]
-       BBB b;
-       b.Initialize();
-       b.Output();
-      
-       CCC c;
-       c.Initialize();
-       c.Output();
-
-*/
-
-// ** 5. 다형성
-
-// ** 6. namespace
-// 동일한 이름을 다른영역으로 만들어 그 함수에 대한 구분이 가능하게 해준다.
-// 해당하는 함수만 별도로 설정가능하고 그 함수를 통째로 설정가능하다.
-//** 별도의 영역을 지정하여 동일한 이름의 함수(변수를 사용하는 것도 가능하다)를 사용할 수 있도록 함.
 
 // ** 7. 생성자 & 소멸자 & 복사 생성자
-// 
 // ** 8. 깊은복사 얕은 복사
-// 
-// ** 9. 오버로딩 & 오버라이딩
-// 
+// ** (복사생성자)
+
+/*
+struct tagInfo
+{
+    int Number;
+};
+
+
+tagInfo Info;
+
+class Object
+{
+protected:
+    tagInfo m_Info;
+public:
+    int Number;
+    char* Name;
+
+public:
+    virtual Object* Clone() = 0;
+
+
+public:
+    
+    
+    //** 사용자가 호출하지 않아도 스스로 호출됨.
+    //** 클래스가 생성된 직후 호출
+    Object()   // 생성자
+    {
+        cout << "생성자" << endl;
+    };    
+    
+    //** 사용자가 호출하는 시점에 호출됨.
+    //** 클래스가 생성되거나 삭제되는 것이 아닌 언제든지 호출가능하다.
+    //** 전달값의 개수와 자료형(int인지 float인지)에 따라서 선택적(자동)으로 호출 됨.
+    Object(int _Number) : Number(_Number)  // 생성자
+    {
+        cout << "복사 생성자: int" << endl;
+
+       // Number = _Number;
+    };
+
+    Object(float _Number)   // 생성자
+    {
+        cout << "복사 생성자: float" << endl;
+
+        Number = (int)_Number;
+        
+    };
+
+    Object(char* _Name)   // 생성자
+    {
+        Name = new char[strlen(_Name) + 1];
+        strcpy(Name, _Name);
+    };
+
+    Object(Object* _Obj)
+    {
+        Name = new char[strlen(_Obj->Name) + 1];
+        strcpy(Name, _Obj->Name);
+    }
+
+    
+    Object(Object* _Obj)   // 생성자
+    {
+        //Number = _Obj->Number;  // 주소만 복사하기 때문에 동적할당을 해야한다.
+
+        //Name = new char(strlen(_Obj->Name) + 1);  // 동적할당
+        //strcpy(Name, _Obj->Name);
+    };
+    
+
+    Object(tagInfo _Info) : m_Info(_Info)
+    {
+
+    }
+
+    //** 클래스가 삭제되기 직전
+    ~Object()  // 소멸자
+    {
+        cout << "소멸자" << endl;
+
+        //delete[] Name;
+        //Name = nullptr;
+    };
+};
+
+
+
+class Player : public Object
+{
+public:
+
+    virtual Object* Clone() override
+    {
+        return new Player(*this);
+    }
+
+
+    void Output() { cout << m_Info.Number << endl; }
+
+    Player() {};
+    Player(tagInfo _Info) : Object(_Info) { };
+    ~Player() {};
+};
+*/
+
+// 네임스페이스 -> '점 4개로 이루어져있다' 이렇게 외운다.
+// ** 9. 오버로딩 & 오버라이딩   -> 같은 함수 이름을 똑같이 쓸 수 있다 (네임스페이스 도 가능)
+//     1) 오버로딩 (=복사 생성자와 거의 같다)
+//       - 전달값의 개수와 자료형(int인지 float인지)에 따라서 선택적(자동)으로 호출 됨. 
+//       - 매개변수의 개수와 형태가 달라야한다. (같은 이름의 함수를 쓰려면)
+//       - 자기 함수 내의 영역에 쓸 수 있다.
+//     2) 오버라이딩
+//       - 상속의 범위가 크다 (무조건 상속이 되어있다.)
+//       - 함수이름과 매개변수의 개수와 형태까지 일치되어야 한다. (부모한테도 있고 자식에도 있는)
+//       - 오버로딩된 애가 오버라이딩이 될 수 있다. 즉, 둘다(오버로딩과 오버라이딩) 쓸 수 있다.
+//
+//     오버로딩과 오버라이딩의 핵심은 어떻게 출력할 것이냐 이다.
+
+/*
+class Object
+{
+public:
+    virtual void Output()        // 오버 로딩
+    {
+        cout << "" << endl;
+
+    }
+    virtual void Output(string _str)  // 오버로딩
+    {
+        cout << _str << endl;
+    }
+};
+
+class AAA : public Object   // 오버 라이딩
+{
+public:
+    void Output() override
+    {
+        cout << "AAA : " << endl;
+
+    }
+    void Output(string _str) override
+    {
+        cout << "AAA : " << _str << endl;
+    }
+};
+*/
+
 
 // ** 10. 연산자 오버로딩
 //
 
-// ** 11. 포인터
+/*
+struct tagInfo
+{
+    int Number;
 
+    tagInfo() {};
+    tagInfo(int _Number) : Number(_Number) {};
+};
+
+class Object
+{
+private:
+    tagInfo Info;
+public:
+    //** 
+    Object& operator+=(const Object& _Obj)
+    {
+        Info.Number += _Obj.Info.Number;
+        return *this;
+    }
+
+    Object& operator++()
+    {
+        Info.Number += 1;
+        return *this;
+    }
+    
+    void Output()
+    {
+        cout << Info.Number << endl;
+    }
+
+public:
+    Object() { }
+    Object(tagInfo _Info) : Info(_Info) { }
+    ~Object() { }
+
+};
+*/
+
+// ** 11. 포인터(복습) & 캡슐화
 
 
 
@@ -119,62 +220,83 @@ public:
 // 런타임 이후에는 스택이랑 힙이 올라간다.
 // 런타임 전에는 static, 코드 등등
 
-/*
-namespace AAA
-{
-    void Output()
-    {
-        cout << "홍길동" << endl;
-    }
-}
+//map<string, Object*> PortotypeObject;
 
-using namespace AAA;
-using AAA::Output;
-
-namespace BBB
-{
-    void Output()
-    {
-        cout << "임꺽정" << endl;
-    }
-}
-*/
-
-const int ID_Child = 0;
-const int ID_Bullet = 1;
+//Object* GetObject(string _Key);
 
 int main(void)
 {
-    Parent* p[2];
-
-    p[ID_Child] = new Child1;
-    p[ID_Bullet] = new Bullet;
-
-    for (int i = 0; i < 2; ++i)
-    {
-        p[i]->Initialize();
-        p[i]->Output();
-    }
-
-   
-
     /*
-    Child1 c;
+    Object o = Object(3.141592f);     // 복사 생성자 호출
 
-    c.Initialize();
-    c.Output();
+    cout << "Hello World!" << endl;
+    
 
-    Bullet b;
+    //Object o = Object(Object()); // 기본적으로 제공
 
-    b.Initialize();
-    b.Output();
+    Object o1;
+    o1.Number = 10;
+
+    o1.Name = (char*)"홍길동";
+    Object o2(o1);
     */
 
-    
+    /*
+    tagInfo Info;
 
- 
-    
+    AAA a[8];
 
+    for (int i = 0; i < 8; ++i)
+    {
+        Info.Number = i + 1;
+        a[i] = AAA(Info);
+    }
+
+    for (int i = 0; i < 8; ++i)
+        a[i].Output();
+    */
+
+    /*
+     예제
+    
+    tagInfo Info;
+
+    Info.Number = 10;
+    PortotypeObject["Player"] = new Player(Info);
+
+    Object* pProtoObj = GetObject("Player");
+
+    Object* pPlayer = nullptr;
+
+    if (pProtoObj != nullptr)
+        pPlayer = pProtoObj->Clone();
+    */
+
+
+    /*
+    Object o1(tagInfo(10));
+    Object o2(o1);
+
+    o2 += o1;
+
+    ++o2;
+
+    o2.Output();
+    */
 
     return 0;
 }
+
+/*
+Object* GetObject(string _Key)
+{
+    map<string, Object*>::iterator iter = PortotypeObject.find(_Key);
+
+    if (iter == PortotypeObject.end())
+        return nullptr;
+    else
+
+
+    return nullptr;
+}
+*/
