@@ -1,4 +1,4 @@
-﻿// ** Framework v0.2
+﻿// ** Framework v0.3
 #define CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include "Parent.h"
