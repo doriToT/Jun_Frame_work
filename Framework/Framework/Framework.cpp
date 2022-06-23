@@ -4,13 +4,6 @@
 #include "Headers.h"
 #include "MainUpdate.h"
 
-#include <Windows.h>
-
-#include <iostream>
-#include <vector>
-#include <list>
-#include <map>
-
 
 using namespace std;
 
@@ -90,6 +83,23 @@ int main(void)
     }
     */
 
+    MainUpdate Main;
+    Main.Initialize();
+
+    ULONGLONG Time = GetTickCount64(); // 1 / 1000
+
+    while (true)
+    {
+        if (Time + 50 < GetTickCount64())
+        {
+            Time = GetTickCount64();
+
+            system("cls");
+
+            Main.Update();
+            Main.Render();
+        }
+    }
 
     return 0;
 }

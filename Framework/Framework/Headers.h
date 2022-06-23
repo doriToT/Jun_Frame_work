@@ -1,9 +1,17 @@
 #pragma once
 
 // ** Framework v0.4
+#include <Windows.h>
 #include <iostream>
+#include <vector>
+#include <list>
+#include <map>
 
 using namespace std;
+
+#include "Constant.h"
+#include "enum.h"
+
 
 // ** 11. Æ÷ÀÎÅÍ(º¹½À) & Ä¸½¶È­
 
