@@ -2,6 +2,7 @@
 
 #include "Headers.h"
 
+class Scene;     // 클레스를 정의없이 만든것
 class SceneManager
 {
 private:
@@ -16,9 +17,12 @@ public:
     }
 
 private:
-
+    Scene* SceneState;      // 있는 척만 할거다.
 public:
-    void SetScene(int _SceneState);
+    void SetScene(SCENEID _SceneState);
+    void Update();
+    void Render();
+    void Release();
 private:
     SceneManager();
 public:

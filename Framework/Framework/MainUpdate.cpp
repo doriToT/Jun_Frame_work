@@ -7,15 +7,14 @@ MainUpdate::~MainUpdate() { Release(); }
 
 void MainUpdate::Initialize()
 {
-	SceneState = LOGO;
-	SceneManager::GetInstance()->SetScene(SceneState);
-	SceneState++;
+	SceneManager::GetInstance()->SetScene(LOGO);
 }
 
 void MainUpdate::Update()
 {
 	InputManager::GetInstance()->InputKey();
-
+	SceneManager::GetInstance()->Update();
+	/*
 	DWORD dwKey = InputManager::GetInstance()->GetKey();
 
 	if (dwKey & KYE_UP)
@@ -47,11 +46,13 @@ void MainUpdate::Update()
 
 	if (dwKey & KYE_ALT)
 		cout << "KYE_ALT" << endl;
+	*/
 	
 }
 
 void MainUpdate::Render()
 {
+	SceneManager::GetInstance()->Render();
 }
 
 void MainUpdate::Release()
