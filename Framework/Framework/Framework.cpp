@@ -2,87 +2,61 @@
 #define CRT_SECURE_NO_WARNINGS
 
 #include "Headers.h"
+#include "Constant.h"
 #include "MainUpdate.h"
 
 
 using namespace std;
 
-// API를 안쓰려고 쓰는게 MFC이다.
-// 윈도우 대부분의 기능은 API로 만드는게 많다.
+//** Input
 //
-
-//** 루프는 실행되는 순서가 정해져 있다.
-//** GetTickCount   대략 49일
-//** GetTickCount64 대략 5억년
-
-//** Singleton
-// 관리자로 쓸 것 하나만 만들어야한다. 외부에서 만들 수 없는 상태여야한다.
-// 생성자를 private에 둔다.
-// 데이터를 언제든지 어디서나 쓸 수 있게 만드는
-// 실생활에서는 서버실이다
-
-/*
-class Singleton
-{
-private:
-    static Singleton* Instance;
-public:
-    static Singleton* GetInstance()
-    {
-        if (Instance == nullptr)
-            Instance = new Singleton;    // new Singleton() << 이게 기본형식
-
-        return Instance;
-    }
-
-private:
-    int Number;
-public:
-    int GetNumber() const { return Number; }
-    void SetNumber(const int& _Number) { Number = _Number; }
-
-private:
-    Singleton() : Number(0) {}
-public:
-    ~Singleton() {}
-};
+// 
 
 
-Singleton* Singleton::Instance = nullptr;
-*/
+// 00000001 = 1
+// 00000010 = 2
+// 00000100 = 4
+// 00001000 = 8
+// 00010000 = 16
+// 00100000 = 32
+// 01000000 = 64
+// 10000000 = 128
 
 
 int main(void)
 {
     /*
-    Singleton::GetInstance()->SetNumber(10);
-    cout << Singleton::GetInstance()->GetNumber() << endl;
+    DWORD InputKey = 0;
+
+    cout << "입력: "; cin >> InputKey;
+
+    if (InputKey & KYE_UP)
+        cout << "KYE_UP " << endl;
+
+    if (InputKey & KYE_DOWN)
+        cout << "KYE_DOWN " << endl;
+
+    if (InputKey & KYE_LEFT)
+        cout << "KYE_LEFT " << endl;
+
+    if (InputKey & KYE_RIGHT)
+        cout << "KYE_RIGHT" << endl;
+
+    if (InputKey & KYE_SPACE)
+        cout << "KYE_SPACE" << endl;
+
+    if (InputKey & KYE_ENTER)
+        cout << "KYE_ENTER" << endl;
+
+    if (InputKey & KYE_CTRL)
+        cout << "KYE_CTRL" << endl;
+
+    if (InputKey & KYE_ALT)
+        cout << "KYE_ALT" << endl;
     */
 
-    /*
-    MainUpdate Main;
-    Main.Initialize();
 
-    ULONGLONG Time = GetTickCount64();  // 1 / 1000 프로그램을 무한정 켜둘 순 없다.
-
-
-    while (true)
-    {
-        if (Time + 50 < GetTickCount64())
-        {
-            Time = GetTickCount64();
-
-            system("cls");  // 버퍼 지우는 기능
-
-            
-            Main.Update();
-            Main.Render();
-
-
-        }
-    }
-    */
-
+    
     MainUpdate Main;
     Main.Initialize();
 
@@ -100,20 +74,7 @@ int main(void)
             Main.Render();
         }
     }
+    
 
     return 0;
 }
-
-/*
-Object* GetObject(string _Key)
-{
-    map<string, Object*>::iterator iter = PortotypeObject.find(_Key);
-
-    if (iter == PortotypeObject.end())
-        return nullptr;
-    else
-
-
-    return nullptr;
-}
-*/

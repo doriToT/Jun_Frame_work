@@ -52,6 +52,12 @@ using namespace std;
 //   스택영역   |    힙
 
 
+//** Singleton
+// 관리자로 쓸 것 하나만 만들어야한다. 외부에서 만들 수 없는 상태여야한다.
+// 생성자를 private에 둔다.
+// 데이터를 언제든지 어디서나 쓸 수 있게 만드는
+// 실생활에서는 서버실이다
+
 /*
 {
     Parent* pParent = new Child1;
