@@ -1,4 +1,4 @@
-﻿// ** Framework v1.0
+﻿// ** Framework v1.1
 #define CRT_SECURE_NO_WARNINGS
 
 #include "Headers.h"
