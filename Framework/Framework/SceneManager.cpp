@@ -9,7 +9,6 @@
 SceneManager* SceneManager::Instance = nullptr;
 
 SceneManager::SceneManager() : SceneState(nullptr) {}
-
 SceneManager::~SceneManager() { Release(); }
 
 
@@ -36,7 +35,7 @@ void SceneManager::SetScene(SCENEID _SceneState)
 		break;
 
 	case EXIT:
-
+		exit(NULL);
 		break;
 	}
 	SceneState->Initialize();

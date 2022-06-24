@@ -11,19 +11,5 @@ Scene::~Scene()
 {
 }
 
-void Scene::Initialize()
-{
-}
 
-void Scene::Update()
-{
-}
-
-void Scene::Render()
-{
-}
-
-void Scene::Release()
-{
-}
 
