@@ -14,6 +14,7 @@ SceneManager::~SceneManager()
 
 void SceneManager::SetScene(int _SceneState)
 {
+
 	switch (_SceneState)
 	{
 	case LOGO:
