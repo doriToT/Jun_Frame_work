@@ -1,14 +1,17 @@
 #pragma once
-#include "Scene.h"
+#include "Object.h"
 
-class Logo : public Scene
+class Enemy : public Object
 {
+private:
 public:
 	virtual void Initialize()override;
 	virtual void Update()override;
 	virtual void Render()override;
 	virtual void Release()override;
 public:
-	Logo();
-	virtual ~Logo();
+	Enemy();
+	virtual ~Enemy();
+
 };
+

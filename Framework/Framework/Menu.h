@@ -3,8 +3,6 @@
 
 class Menu : public Scene
 {
-
-private:
 public:
 	virtual void Initialize()override;
 	virtual void Update()override;
@@ -12,6 +10,6 @@ public:
 	virtual void Release()override;
 public:
 	Menu();
-	~Menu();
+    virtual ~Menu();
 };
 

@@ -1,15 +1,5 @@
 #include "Scene.h"
-#include "SceneManager.h"
-#include "InputManager.h"
 
-
-Scene::Scene()
-{
-}
-
-Scene::~Scene()
-{
-}
-
-
-
+Scene::Scene() { }
+Scene::Scene(string _str) : str(_str) { }
+Scene::~Scene() { }

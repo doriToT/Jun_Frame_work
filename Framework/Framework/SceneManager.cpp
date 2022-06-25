@@ -1,11 +1,11 @@
 #include "SceneManager.h"
 #include "InputManager.h"
 
-#include "LOGO.h"
+#include "Logo.h"
 #include "Menu.h"
 #include "Stage.h"
 
-
+// 변수가 선언되어 있으면 초기화를 무조건 시켜줘야 한다.
 SceneManager* SceneManager::Instance = nullptr;
 
 SceneManager::SceneManager() : SceneState(nullptr) {}
@@ -16,25 +16,24 @@ void SceneManager::SetScene(SCENEID _SceneState)
 {
 	if (SceneState != nullptr)
 	{
-		delete SceneState;
-		SceneState = nullptr;
+		::Safe_Delete(SceneState);   // 앞에 아무것도 없고 :: 나온다면 inline 함수이다.
 	}
 
 	switch (_SceneState)
 	{
-	case LOGO:
+	case SCENEID::LOGO:
 		SceneState = new Logo;
 		break;
 
-	case MENU:
+	case SCENEID::MENU:
 		SceneState = new Menu;
 		break;
 
-	case STAGE:
+	case SCENEID::STAGE:
 		SceneState = new Stage;
 		break;
 
-	case EXIT:
+	case SCENEID::EXIT:
 		exit(NULL);
 		break;
 	}
@@ -54,6 +53,5 @@ void SceneManager::Render()
 
 void SceneManager::Release()
 {
-	delete SceneState;
-	SceneState = nullptr;
+	::Safe_Delete(SceneState);
 }
