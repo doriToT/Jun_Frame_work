@@ -2,7 +2,7 @@
 
 #include "Headers.h"
 
-class Scene;     // 클레스를 정의없이 만든것
+class Scene;     // 클레스를 정의없이 만든것 가상의 클레스
 class SceneManager
 {
 private:

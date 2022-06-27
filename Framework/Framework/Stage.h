@@ -11,6 +11,7 @@ public:
 	virtual void Update()override;
 	virtual void Render()override;
 	virtual void Release()override;
+
 public:
 	Stage();
 	virtual ~Stage();

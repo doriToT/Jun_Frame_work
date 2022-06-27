@@ -16,7 +16,6 @@ using namespace std;
 int main(void)
 {
 
-    
     MainUpdate Main;
     Main.Initialize();
 
