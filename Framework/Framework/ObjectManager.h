@@ -5,30 +5,26 @@ class Object;
 class ObjectManager
 {
 private:
-    static ObjectManager* Instance;   // << 싱글톤이다.
+	static ObjectManager* Instance;
 public:
-    static ObjectManager* GetInstance()   // << 싱글톤이다.
-    {
-        if (Instance == nullptr)
-            Instance = new ObjectManager;    // << C에서는 가능하다 다른 곳에선 new Singleton() << 이게 기본형식
+	static ObjectManager* GetInstance()
+	{
+		if (Instance == nullptr)
+			Instance = new ObjectManager;
 
-        return Instance;
-    }
-
+		return Instance;
+	}
 private:
-    map<string, list<Object*>> ObjectList;
-
+	map<string, list<Object*>> ObjectList;
 public:
-    void AddObject(Object* _Object);
-    // ** 1. 반환 형태가 list<Object*>  
-    // ** 2. Key가 전달되어야 함.
+	void AddObject(Object* _Object);
+	list<Object*>* GetObjectList(string _strKey);
 
-    list<Object*>* GetObjectList(string _strKey);
-
-    void Render();
+	void Update();
+	void Render();
 private:
-    ObjectManager();
+	ObjectManager();
 public:
-    ~ObjectManager();
+	~ObjectManager();
 };
 

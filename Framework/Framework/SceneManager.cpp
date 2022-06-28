@@ -1,5 +1,4 @@
 #include "SceneManager.h"
-#include "InputManager.h"
 
 #include "Logo.h"
 #include "Menu.h"

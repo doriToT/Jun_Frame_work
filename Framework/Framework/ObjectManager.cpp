@@ -3,9 +3,16 @@
 
 ObjectManager* ObjectManager::Instance = nullptr;
 
-ObjectManager::ObjectManager() { }
+ObjectManager::ObjectManager()
+{
 
-ObjectManager::~ObjectManager() { }
+}
+
+ObjectManager::~ObjectManager()
+{
+
+}
+
 
 void ObjectManager::AddObject(Object* _Object)
 {
@@ -28,17 +35,31 @@ list<Object*>* ObjectManager::GetObjectList(string _strKey)
 	if (iter == ObjectList.end())
 		return nullptr;
 
-	list<Object*> Temp;
-
 	return &iter->second;
 }
 
-
-void ObjectManager::Render() // 이거는 작성 안해도 됨.
+void ObjectManager::Update()
 {
 	for (map<string, list<Object*>>::iterator iter = ObjectList.begin();
 		iter != ObjectList.end(); ++iter)
+	{
 		for (list<Object*>::iterator iter2 = iter->second.begin();
 			iter2 != iter->second.end(); ++iter2)
+		{
+			(*iter2)->Update();
+		}
+	}
+}
+
+void ObjectManager::Render()
+{
+	for (map<string, list<Object*>>::iterator iter = ObjectList.begin();
+		iter != ObjectList.end(); ++iter)
+	{
+		for (list<Object*>::iterator iter2 = iter->second.begin();
+			iter2 != iter->second.end(); ++iter2)
+		{
 			(*iter2)->Render();
+		}
+	}
 }

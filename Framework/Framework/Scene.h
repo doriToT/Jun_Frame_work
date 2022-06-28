@@ -15,3 +15,4 @@ public:
 	Scene(string _str);
 	virtual ~Scene();
 };
+

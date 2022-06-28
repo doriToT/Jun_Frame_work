@@ -5,6 +5,7 @@
 MainUpdate::MainUpdate() { }
 MainUpdate::~MainUpdate() { Release(); }
 
+
 void MainUpdate::Initialize()
 {
 	SceneManager::GetInstance()->SetScene(LOGO);
@@ -14,7 +15,6 @@ void MainUpdate::Update()
 {
 	InputManager::GetInstance()->InputKey();
 	SceneManager::GetInstance()->Update();
-	
 }
 
 void MainUpdate::Render()
@@ -24,5 +24,6 @@ void MainUpdate::Render()
 
 void MainUpdate::Release()
 {
+
 }
 

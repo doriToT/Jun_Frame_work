@@ -1,16 +1,10 @@
 ﻿// ** Framework v2.3
 #define CRT_SECURE_NO_WARNINGS
-
 #include "Headers.h"
-#include "Constant.h"
 #include "MainUpdate.h"
 
 
 using namespace std;
-
-//** Input
-//
-// 
 
 
 int main(void)

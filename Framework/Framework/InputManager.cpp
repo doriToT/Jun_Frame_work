@@ -2,7 +2,6 @@
 
 InputManager* InputManager::Instance = nullptr;
 
-
 InputManager::InputManager() : Key(0) { }
 InputManager::~InputManager() { }
 
@@ -34,5 +33,4 @@ void InputManager::InputKey()
 
 	if (GetAsyncKeyState(VK_MENU))
 		Key |= KEY_ALT;
-     
 }

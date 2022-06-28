@@ -1,24 +1,14 @@
 #pragma once
+#include "Object.h"
 
-#include "Parent.h"
-
-#include <iostream>
-
-using namespace std;
-
-class Bullet : public Parent
+class Bullet : public Object
 {
 public:
-private:
-    //** 자기자신만 사용가능.
-
-protected:
-    //** 상속간의 공개된 상태, 비상속 클레스는 사용불가. 즉, 외부 사용불가
-    int m_Number = 100;
-
+	virtual void Initialize()override;
+	virtual void Update()override;
+	virtual void Render()override;
+	virtual void Release()override;
 public:
-    //** 공개된 상태
-    void Initialize();
-    void Output();
-};
-
+	Bullet();
+	virtual ~Bullet();
+};;

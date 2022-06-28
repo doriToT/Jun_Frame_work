@@ -1,5 +1,5 @@
 #pragma once
-#include "Scene.h"
+#include "Scene.h" 
 
 class Menu : public Scene
 {
@@ -10,6 +10,6 @@ public:
 	virtual void Release()override;
 public:
 	Menu();
-    virtual ~Menu();
+	virtual ~Menu();
 };
 

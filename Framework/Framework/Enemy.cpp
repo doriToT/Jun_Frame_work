@@ -1,27 +1,33 @@
 #include "Enemy.h"
+#include "CursorManager.h"
 
 Enemy::Enemy() { }
-
-//Enemy::Enemy(Transform _Info) : Object(_Info) { }  // 테스트할때 이거 안해도됨
-
 Enemy::~Enemy() { }
 
 
 void Enemy::Initialize()
 {
-	strKey = "Enemy";
+	strKey = "★";
+
+	TransInfo.Position = Vector3(80.0f, 15.0f);
+	TransInfo.Rotation = Vector3(0.0f, 0.0f);
+	TransInfo.Scale = Vector3(2.0f, 1.0f);
 }
 
 void Enemy::Update()
 {
+
 }
 
 void Enemy::Render()
 {
-	Message("Enemy");
+	CursorManager::Draw(
+		TransInfo.Position.x,
+		TransInfo.Position.y,
+		strKey);
 }
 
 void Enemy::Release()
 {
-}
 
+}
