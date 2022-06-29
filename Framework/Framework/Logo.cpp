@@ -1,6 +1,7 @@
 #include "Logo.h"
-#include "Logo.h"
 #include "SceneManager.h"
+#include "InputManager.h"
+
 #include "InputManager.h"
 
 #include "ObjectManager.h"
