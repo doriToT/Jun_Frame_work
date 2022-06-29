@@ -2,20 +2,16 @@
 #include "SceneManager.h"
 #include "InputManager.h"
 
-#include "InputManager.h"
-
 #include "ObjectManager.h"
 #include "Player.h"
 #include "Enemy.h"
 
-Logo::Logo() : Scene("") { }
+Logo::Logo() { }
 Logo::~Logo() { }
 
 
 void Logo::Initialize()
 {
-	str = "Logo";
-
 	Object* pPlayer = new Player;
 	pPlayer->Initialize();
 
@@ -36,7 +32,7 @@ void Logo::Update()
 
 void Logo::Render()
 {
-	cout << str << endl;
+	cout << "Logo" << endl;
 }
 
 void Logo::Release()
