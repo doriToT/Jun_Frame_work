@@ -37,6 +37,7 @@ int Bullet::Update()
 
 	Vector3 Target = Vector3(60.0f, 15.0f);
 
+	/*
 	//  <원인>
 	// Player에서 생성할 때, Initialize 이후에 SetPosition 적용하기 때문에
 	// Direction계산법을 Initialize에 써주면 Initialize에 적힌 Position으로 초기 위치가 설정 돼버림.
@@ -48,6 +49,7 @@ int Bullet::Update()
 	// ex) int b(bool값 대체)와 새 함수(SetDirection)를 사용해 Update에서 조건식으로 만들어 사용하는 방법
 	// if (b == 0) SetDirection();
 	// void SetDirection() { // 이하 속도 증가량 계산 코드 };
+	*/
 
 	// 이동 속도 증가량 계산
 	Vector3 TargetVector = Target - TransInfo.Position; // 이 부분이 Initialize에 있으면 안됌
@@ -66,12 +68,12 @@ int Bullet::Update()
 	// ======
 
 	// 총알의 현재 위치
-	cout << "PosX : " << TransInfo.Position.x << endl;
-	cout << "PosY : " << TransInfo.Position.y << endl;
+	//cout << "PosX : " << TransInfo.Position.x << endl;
+	//cout << "PosY : " << TransInfo.Position.y << endl;
 
 	// 총알의 현재 속도
-	cout << "DirectionX : " << TransInfo.Direction.x << endl;
-	cout << "DirectionX : " << TransInfo.Direction.y << endl;
+	//cout << "DirectionX : " << TransInfo.Direction.x << endl;
+	//cout << "DirectionX : " << TransInfo.Direction.y << endl;
 
 	// 총알의 현재 속도 2
 	float Average = sqrt(
@@ -80,7 +82,7 @@ int Bullet::Update()
 	// 검산식 : Target까지 거리를 x1=3, y1=4, r1=5라고 가정할 때, Direction의 수치는 x2 == 3/5, y2 == 4/5이다.
 	// 이를 피타고라스 식을 사용하면 이동량은 r2 == √((9/25) + (16/25)) == 1이 나온다.
 	// 결론 : 실행 시 출력 값이 1이 나오는 것으로 검산 완료
-	cout << "Speed : " << Average << endl << endl;
+	//cout << "Speed : " << Average << endl << endl;
 
 
 	/*
