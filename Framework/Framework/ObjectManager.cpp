@@ -62,12 +62,6 @@ void ObjectManager::Update()
 
 
 
-
-
-
-
-
-
 		}
 	}
 }
