@@ -2,7 +2,7 @@
 #include "Headers.h"
 
 class Object;
-class ObjectManager
+class ObjectManager      // 특정 데이터를 관리한다. 임시 저장소 개념
 {
 private:
 	static ObjectManager* Instance;
