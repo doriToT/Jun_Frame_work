@@ -1,5 +1,6 @@
 #include "Bullet.h"
 #include "CursorManager.h"
+#include "MathManager.h"
 
 Bullet::Bullet() { }
 Bullet::Bullet(Transform _TransInfo) : Object(_TransInfo) { }
@@ -18,32 +19,28 @@ void Bullet::Initialize()
 	TransInfo.Scale = Vector3(2.0f, 2.0f);
 	//TransInfo.Direction = Vector3(0.1f, -0.06f);
 
-
-	Vector3 Target = Vector3(60.0f, 15.0f);
-
-	Vector3 Result = Target - TransInfo.Position;
+	TransInfo.Direction = Vector3(0.0f, 0.0f);
 
 
-	float Distance = sqrt((Result.x * Result.x) + (Result.y * Result.y));
-
-	TransInfo.Direction /= Distance;
 }
 
 int Bullet::Update()
 {
-	//printf_s("%f\n", TransInfo.Direction.x);
-	//printf_s("%f\n", TransInfo.Direction.y);
-
-	Vector3 Target = Vector3(60.0f, 15.0f);
-
-	float Width = Target.x - TransInfo.Position.x;
-	float Height = Target.y - TransInfo.Position.y;
-
-	float Distance = sqrt((Width * Width) + (Height * Height));
-
-	TransInfo.Direction = Vector3(Width / Distance, Height / Distance);
+	TransInfo.Direction = MathManager::GetDirection(
+		TransInfo.Position, Vector3(60.0f, 15.0f));
 
 	TransInfo.Position += TransInfo.Direction;
+
+	float Distance = MathManager::GetDistance(
+		TransInfo.Position, Vector3(60.0f, 15.0f));
+
+	if (Distance < 4)
+		return 2;
+
+
+	TransInfo.Position += TransInfo.Direction;
+
+
 
 	return 0;
 }

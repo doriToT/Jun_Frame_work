@@ -11,15 +11,14 @@ public:
 	{
 		if (Instance == nullptr)
 			Instance = new ObjectPool;
-
 		return Instance;
 	}
 private:
-	map<string, list<Object*>> EnableList;
+	// 현재 돌아가고 눈에 보이는 곳에서만 쓰겠다. static은 staic으로 불러올 수 밖에 없다.
+	static map<string, list<Object*>> EnableList;
 	map<string, list<Object*>> DisableList;
 public:
-	void AddObject(string _Key, list<Object*> _List);
-	void AddObject(Object* _Object);
+	static map<string, list<Object*>>* GetEnableList() { return &EnableList; }
 	void Update();
 private:
 	ObjectPool();

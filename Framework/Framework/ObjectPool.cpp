@@ -1,7 +1,9 @@
 #include "ObjectPool.h"
 #include "Object.h"
+#include "CursorManager.h"
 
 ObjectPool* ObjectPool::Instance = nullptr;
+map<string, list<Object*>> ObjectPool::EnableList;
 
 ObjectPool::ObjectPool()
 {
@@ -9,17 +11,6 @@ ObjectPool::ObjectPool()
 }
 
 ObjectPool::~ObjectPool()
-{
-
-}
-
-
-void ObjectPool::AddObject(string _Key, list<Object*> _List)
-{
-	EnableList.insert(make_pair(_Key, _List));
-}
-
-void ObjectPool::AddObject(Object* _Object)
 {
 
 }
@@ -51,7 +42,11 @@ void ObjectPool::Update()
 
 				(*iter).second.erase(iter2);
 			}
-			break;
+			
+			case 2:
+				CursorManager::GetInstance()->WriteBuffer(50.5f, 1.0f, (char*)"충돌입니다.");
+				++iter2;
+				break;
 
 			default:
 				++iter2;
