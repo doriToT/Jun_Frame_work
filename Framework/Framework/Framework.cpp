@@ -1,26 +1,9 @@
 ﻿// ** Framework v6.2
-#define CRT_SECURE_NO_WARNINGS
+#define _CRT_SECURE_NO_WARNINGS
 #include "Headers.h"
 #include "MainUpdate.h"
 
 
-
-class AAA
-{
-public:
-    int Number;
-    static int Num;
-};
-
-class BBB : public AAA
-{
-};
-
-class CCC : public AAA
-{
-public:
-    int Number;
-};
 
 //** 동적과 정적의 차이
 /*
