@@ -26,7 +26,7 @@ void ObjectManager::AddObject(string _Key)
 
 
 	map<string, list<Object*>>::iterator iter = EnableList->find(_Key);
-
+	// 
 	if (iter == EnableList->end())
 	{
 		list<Object*> TempList;
