@@ -88,12 +88,13 @@ void Stage::Update()
 				Enemyiter != pEnemyList->end(); ++Enemyiter)
 			{
 				if (CollisionManager::CircleCollision(pPlayer, *Enemyiter))
-					Enemyiter = ObjectManager::GetInstance()->ThrowObject(Enemyiter, (*Enemyiter));
+					//Enemyiter = ObjectManager::GetInstance()->ThrowObject(Enemyiter, (*Enemyiter));
 
 
 
 				if (pBulletList != nullptr)
 				{
+					/*
 					for (list<Object*>::iterator Bulletiter = pBulletList->begin();
 						Bulletiter != pBulletList->end(); )
 					{
@@ -102,6 +103,7 @@ void Stage::Update()
 						else
 							++Bulletiter;
 					}
+					*/
 				}
 			}
 		}
