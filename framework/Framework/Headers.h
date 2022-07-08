@@ -1,7 +1,7 @@
 #pragma once
 
 #pragma once
-
+#define _CRT_SECURE_NO_WARNINGS
 #include <Windows.h>
 #include <iostream>
 #include <string>
@@ -16,5 +16,5 @@ using namespace std;
 
 #include "Define.h"
 #include "Constant.h"
-#include "Enum.h"
+#include "enum.h"
 #include "Struct.h"

@@ -1,5 +1,7 @@
 #include "ObjectManager.h"
+#include "ObjectFactory.h"
 #include "ObjectPool.h"
+#include "Bullet.h"
 #include "Object.h"
 
 ObjectManager* ObjectManager::Instance = nullptr;
@@ -15,18 +17,24 @@ ObjectManager::~ObjectManager()
 }
 
 
-void ObjectManager::AddObject(Object* _Object)
+void ObjectManager::AddObject(string _Key)
 {
-	map<string, list<Object*>>::iterator iter = EnableList->find(_Object->GetKey());
+	Object* pObject = ObjectPool::GetInstance()->ThrowObject(_Key);
+
+	if (pObject == nullptr)
+		pObject = ObjectFactory<Bullet>::CreateObject();
+
+
+	map<string, list<Object*>>::iterator iter = EnableList->find(_Key);
 
 	if (iter == EnableList->end())
 	{
 		list<Object*> TempList;
-		TempList.push_back(_Object);
-		EnableList->insert(make_pair(_Object->GetKey(), TempList));
+		TempList.push_back(pObject);
+		EnableList->insert(make_pair(pObject->GetKey(), TempList));
 	}
 	else
-		iter->second.push_back(_Object);
+		iter->second.push_back(pObject);
 }
 
 list<Object*>* ObjectManager::GetObjectList(string _strKey)
@@ -39,16 +47,15 @@ list<Object*>* ObjectManager::GetObjectList(string _strKey)
 	return &iter->second;
 }
 
-void ObjectManager::ThrowObject(Object* _Object)
+list<Object*>::iterator ObjectManager::ThrowObject(list<Object*>::iterator _Where, Object* _Object)
 {
 	map<string, list<Object*>>::iterator iter = EnableList->find(_Object->GetKey());
 
 	if (iter == EnableList->end())
-		return;
+		return _Where;
 
-
-
-	EnableList->erase(iter);
+	ObjectPool::GetInstance()->CatchObject(_Object);
+	return iter->second.erase(_Where);
 }
 
 void ObjectManager::Update()

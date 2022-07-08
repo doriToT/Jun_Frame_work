@@ -1,6 +1,7 @@
 #include "ObjectPool.h"
 #include "Object.h"
 #include "CursorManager.h"
+#include "CursorManager.h"
 
 ObjectPool* ObjectPool::Instance = nullptr;
 map<string, list<Object*>> ObjectPool::EnableList;
@@ -29,14 +30,27 @@ void ObjectPool::CatchObject(Object* _Object)
 		Disableiter->second.push_back(_Object);
 }
 
+Object* ObjectPool::ThrowObject(string _Key)
+{
+	map<string, list<Object*>>::iterator Disableiter = DisableList.find(_Key);
+
+	if (Disableiter != DisableList.end() && Disableiter->second.size())
+	{
+		Object* pObject = Disableiter->second.front();
+		Disableiter->second.pop_front();
+		return pObject;
+	}
+
+	return nullptr;
+}
+
 void ObjectPool::Update()
 {
-	for (map<string, list<Object*>>::iterator iter = DisableList.begin();
-		iter != DisableList.end(); ++iter)
-	{
-		CursorManager::GetInstance()->WriteBuffer(0.0f, 0.0f, (char*)"DisableList : ");
-		CursorManager::GetInstance()->WriteBuffer(15.0f, 0.0f, iter->second.size());
-	}
+	CursorManager::GetInstance()->WriteBuffer(85.0f, 0.0f, (char*)"DisableList : ");
+	CursorManager::GetInstance()->WriteBuffer(100.0f, 0.0f, DisableList["Bullet"].size());
+
+	CursorManager::GetInstance()->WriteBuffer(85.0f, 1.0f, (char*)"EnableList : ");
+	CursorManager::GetInstance()->WriteBuffer(100.0f, 1.0f, EnableList["Bullet"].size());
 
 	for (map<string, list<Object*>>::iterator iter = EnableList.begin();
 		iter != EnableList.end(); ++iter)
@@ -44,9 +58,6 @@ void ObjectPool::Update()
 		for (list<Object*>::iterator iter2 = iter->second.begin();
 			iter2 != iter->second.end(); )
 		{
-			CursorManager::GetInstance()->WriteBuffer(0.0f, 1.0f, (char*)"EnableList : ");
-			CursorManager::GetInstance()->WriteBuffer(14.0f, 1.0f, iter->second.size());
-
 			int result = (*iter2)->Update();
 
 			switch (result)
@@ -78,4 +89,3 @@ void ObjectPool::Update()
 		}
 	}
 }
-
