@@ -9,7 +9,7 @@ Enemy::~Enemy() { }
 
 
 
-void Enemy::Initialize()
+Object* Enemy::Initialize(string _Key)
 {
 	strKey = "Enemy";
 
@@ -21,6 +21,8 @@ void Enemy::Initialize()
 	TransInfo.Scale = Vector3((float)strlen(Buffer[0]), (float)MAX_SIZE);
 
 	Color = 12;
+
+	return this;
 }
 
 

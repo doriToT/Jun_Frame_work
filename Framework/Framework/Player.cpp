@@ -4,14 +4,13 @@
 #include "Bullet.h"
 #include "ObjectManager.h"
 #include "ObjectFactory.h"
-#include "CursorManager.h"
 
 Player::Player() { }
 Player::Player(Transform _TransInfo) : Object(_TransInfo) { }
 Player::~Player() { }
 
 
-void Player::Initialize()
+Object* Player::Initialize(string _Key)
 {
 	strKey = "Player";
 
@@ -23,6 +22,8 @@ void Player::Initialize()
 	TransInfo.Scale = Vector3(2.0f, 2.0f);
 
 	Color = 15;
+
+	return this;
 }
 
 int Player::Update()

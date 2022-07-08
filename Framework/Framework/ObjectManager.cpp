@@ -1,8 +1,9 @@
 #include "ObjectManager.h"
 #include "ObjectFactory.h"
-#include "ObjectPool.h"
 #include "Bullet.h"
 #include "Object.h"
+#include "ObjectPool.h"
+#include "prototype.h"
 
 ObjectManager* ObjectManager::Instance = nullptr;
 
@@ -22,11 +23,10 @@ void ObjectManager::AddObject(string _Key)
 	Object* pObject = ObjectPool::GetInstance()->ThrowObject(_Key);
 
 	if (pObject == nullptr)
-		pObject = ObjectFactory<Bullet>::CreateObject();
-
+		pObject = prototype::GetInstance()->ProtoTypeObject(_Key)->Clone();
 
 	map<string, list<Object*>>::iterator iter = EnableList->find(_Key);
-	// 
+
 	if (iter == EnableList->end())
 	{
 		list<Object*> TempList;

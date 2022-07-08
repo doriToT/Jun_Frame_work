@@ -7,7 +7,7 @@ Bullet::Bullet(Transform _TransInfo) : Object(_TransInfo) { }
 Bullet::~Bullet() { }
 
 
-void Bullet::Initialize()
+Object* Bullet::Initialize(string _Key)
 {
 	strKey = "Bullet";
 
@@ -21,6 +21,8 @@ void Bullet::Initialize()
 	TransInfo.Direction = Vector3(0.0f, 0.0f);
 
 	Color = 13;
+
+	return this;
 }
 
 int Bullet::Update()
