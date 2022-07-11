@@ -6,15 +6,19 @@ class Player : public Object
 private:
 	Object* pPlayer;
 public:
-    virtual Object* Initialize(string _Key)override;
+	virtual Object* Initialize(string _Key)override;
 	virtual int Update()override;
 	virtual void Render()override;
 	virtual void Release()override;
 
 	virtual Object* Clone()override { return new Player(*this); }
 public:
+	template <typename T>
+	Object* CreateBullet();
+public:
 	Player();
 	Player(Transform _TransInfo);
 	virtual ~Player();
 };
+
 
