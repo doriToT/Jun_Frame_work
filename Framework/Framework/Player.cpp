@@ -4,7 +4,6 @@
 #include "Bullet.h"
 #include "ObjectManager.h"
 #include "ObjectFactory.h"
-
 #include "NormalBullet.h"
 
 Player::Player() { }

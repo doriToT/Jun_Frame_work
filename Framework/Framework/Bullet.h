@@ -15,5 +15,3 @@ public:
 	Bullet(Transform _TransInfo);
 	virtual ~Bullet();
 };
-
-

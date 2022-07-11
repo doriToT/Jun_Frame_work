@@ -36,7 +36,7 @@ void NormalBullet::Render()
 	for (int i = 0; i < 2; ++i)
 		CursorManager::GetInstance()->WriteBuffer(
 			pObject->GetPosition().x,
-			pObject->GetPosition().y + i,
+			pObject->GetPosition().y,
 			(char*)"Bullet", Color);
 
 }
