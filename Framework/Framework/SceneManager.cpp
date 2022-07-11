@@ -18,6 +18,8 @@ void SceneManager::SetScene(SCENEID _SceneState)
 		::Safe_Delete(SceneState);   // 앞에 아무것도 없고 :: 나온다면 inline 함수이다.
 	}
 
+	// 상태 매니저
+
 	switch (_SceneState)
 	{
 	case SCENEID::LOGO:

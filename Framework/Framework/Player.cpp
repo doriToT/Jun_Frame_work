@@ -12,7 +12,7 @@ Player::~Player() { }
 
 Object* Player::Initialize(string _Key)
 {
-	strKey = "Player";
+	strKey = _Key;
 
 	Buffer[0] = (char*)"¿À";
 	Buffer[1] = (char*)"¤µ";
@@ -20,8 +20,6 @@ Object* Player::Initialize(string _Key)
 	TransInfo.Position = Vector3(20.0f, 15.0f);
 	TransInfo.Rotation = Vector3(0.0f, 0.0f);
 	TransInfo.Scale = Vector3(2.0f, 2.0f);
-
-	Color = 15;
 
 	return this;
 }
@@ -56,7 +54,7 @@ void Player::Render()
 		CursorManager::GetInstance()->WriteBuffer(
 			TransInfo.Position.x,
 			TransInfo.Position.y + i,
-			Buffer[i], Color);
+			Buffer[i], 15);
 }
 
 void Player::Release()

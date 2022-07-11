@@ -12,6 +12,11 @@ public:
 		Object* pObject = new T;
 		pObject->Initialize();
 
+		pObject->SetPosition(_x, _y);
+
+		_Bridge->Initalize();
+		_Bridge->SetObject(pObject);
+
 		return pObject;
 	}
 
@@ -22,6 +27,7 @@ public:
 
 		pObject->SetPosition(_x, _y);
 
+
 		return pObject;
 	}
 
@@ -31,6 +37,7 @@ public:
 		pObject->Initialize();
 
 		pObject->SetPosition(_Position);
+
 
 		return pObject;
 	}
