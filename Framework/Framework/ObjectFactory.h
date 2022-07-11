@@ -1,6 +1,5 @@
 #pragma once
 #include "Headers.h"
-#include "Object.h"
 #include "Bridge.h"
 
 class Bridge;
